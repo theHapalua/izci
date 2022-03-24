@@ -1,3 +1,4 @@
 gittoken.txt
 build/**
+build/*
 !build/
