@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-
+project(Izci)
 add_executable(MAIN src/main.cpp src/window.h src/window.cpp)
 
 find_Package( PkgConfig REQUIRED)
