@@ -12,17 +12,20 @@ AppWindow::AppWindow()
   m_StackSidebar(),
   m_Separator(Gtk::Orientation::VERTICAL),
   m_Stack(),
-  button1(),
-  button2(),
-  i_button(),
-  page1(Gtk::Orientation::HORIZONTAL),
-  page2(Gtk::Orientation::HORIZONTAL)
+
+  OP_page(Gtk::Orientation::HORIZONTAL),
+  
+  MO_expander(),
+  MO_box(Gtk::Orientation::HORIZONTAL),
+  LO_cbutton(),
+
+
+  i_button()
 {
   m_HeaderBar.set_show_title_buttons(true);
   set_titlebar(m_HeaderBar);
   set_title("Izci");
   set_default_size(1200, 700);
-  
   
   s_Box.set_margin_top(15);
   s_Box.set_margin_start(20);
@@ -40,34 +43,43 @@ AppWindow::AppWindow()
   m_Stack.set_transition_type(Gtk::StackTransitionType::SLIDE_UP_DOWN);
   m_StackSidebar.set_stack(m_Stack);
 
-  // Stack pages
-  Glib::ustring b1_label("Button 1");
-  Glib::ustring page1_text("Page 1");
-  button1.set_margin(20);
-  button1.set_margin_bottom(580);
-  button1.set_label(b1_label);
-  page1.append(button1);
-  m_Stack.add(page1,page1_text,page1_text);
-
-  Glib::ustring b2_label("Button 2");
-  Glib::ustring page2_text("Page 2");
-  button2.set_margin(20);
-  button2.set_margin_bottom(580);
-  button2.set_label(b2_label);
-  page2.append(button2);
-  m_Stack.add(page2,page2_text,page2_text);
+  // Page 1
+  //Microsoft Office
+  Glib::ustring OP_page_text("Ofis Programları");
+  Glib::ustring MO_expander_text("Microsoft Office Alternatifleri");
+  Glib::ustring LO_cbutton_text("Libre Office");
+  LO_cbutton.set_label(LO_cbutton_text);
+  LO_cbutton.set_margin_top(10);
+  LO_cbutton.set_margin_start(30);
+  MO_box.append(LO_cbutton);
+  MO_expander.set_child(MO_box);
+  MO_expander.set_label(MO_expander_text);
+  MO_expander.set_expanded(false);
+  MO_expander.set_margin_top(5);
+  MO_expander.set_margin_start(20);
+  OP_page.append(MO_expander);
+  m_Stack.add(OP_page,OP_page_text,OP_page_text);
   
+  //Install
   Glib::ustring i_label("Install");
   i_button.set_label(i_label);
   i_button.set_margin_start(540);
   i_button.set_margin_end(540);
   i_button.set_margin_top(15);
   i_button.set_margin_bottom(15);
+  i_button.signal_clicked().connect(sigc::mem_fun(*this, &AppWindow::install));
 
   m_Box.append(i_button);
 }
 
-AppWindow::~AppWindow()
-{
-}
+AppWindow::~AppWindow(){}
 
+//Check Button Togglers
+
+void AppWindow::install(){
+  if(this->LO_cbutton.get_active()){
+    std::cout << "Libre Office is Downloading.\n";
+  }else{
+    std::cout << "Libre Office is not Downloading.\n";
+  }
+}

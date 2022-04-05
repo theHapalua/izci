@@ -11,19 +11,26 @@ class AppWindow : public Gtk::Window{
 		AppWindow();
 		virtual ~AppWindow();
 	protected:
-	  // Container:
+	  // Main Widgets Container:
   	Gtk::Box m_Box;
-    Gtk::Box s_Box;
-
-  	// Widgets:
   	Gtk::HeaderBar m_HeaderBar;
   	Gtk::StackSidebar m_StackSidebar;
   	Gtk::Separator m_Separator;
   	Gtk::Stack m_Stack;
-    Gtk::Button button1;
-    Gtk::Button button2;
-    Gtk::Box page1;
-    Gtk::Box page2;
+    Gtk::Box s_Box;
+
+    //Office Programs Page
+    Gtk::Box OP_page;
+    
+    //Mİcrosoft Office
+    Gtk::Expander MO_expander;
+    Gtk::Box MO_box;
+    Gtk::CheckButton LO_cbutton;
+
+    //Page 2
+
+    //Install
+    void install();
     Gtk::Button i_button;
 };
 
