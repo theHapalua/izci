@@ -25,13 +25,27 @@ class AppWindow : public Gtk::Window{
     //Mİcrosoft Office
     Gtk::Expander MO_expander;
     Gtk::Box MO_box;
-    Gtk::CheckButton LO_cbutton;
+    Gtk::CheckButton LO_cbutton;//Libre Office
+    Gtk::CheckButton WPS_cbutton;//WPS Office
 
-    //Page 2
+    //Graphical Design Page
+    Gtk::Box GD_page;
+
+    //Adobe Photoshop
+    Gtk::Expander AP_expander;
+    Gtk::Box AP_box;
+    Gtk::CheckButton GIMP_cbutton;
+
+    //Adobe Illustrator
+    Gtk::Expander AI_expander;
+    Gtk::Box AI_box;
+    Gtk::CheckButton Ink_cbutton;
 
     //Install
     void install();
     Gtk::Button i_button;
+    std::unique_ptr<Gtk::MessageDialog> i_dialog;
+    void on_install_dialog_response(int response_id);
 };
 
 #endif
