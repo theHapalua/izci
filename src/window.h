@@ -19,6 +19,10 @@ class AppWindow : public Gtk::Window{
   	Gtk::Stack m_Stack;
     Gtk::Box s_Box;
 
+    //Information Page
+    Gtk::Box I_page;
+    Gtk::Label I_label;
+
     //Office Programs Page
     Gtk::Box OP_page;
     

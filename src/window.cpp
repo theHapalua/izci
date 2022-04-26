@@ -12,6 +12,9 @@ AppWindow::AppWindow()
   m_StackSidebar(),
   m_Separator(Gtk::Orientation::VERTICAL),
   m_Stack(),
+  
+  I_page(Gtk::Orientation::VERTICAL),
+  I_label(),
 
   OP_page(Gtk::Orientation::VERTICAL),
   
@@ -33,8 +36,9 @@ AppWindow::AppWindow()
 {
   m_HeaderBar.set_show_title_buttons(true);
   set_titlebar(m_HeaderBar);
-  set_title("Izci");
+  set_title("İzci");
   set_default_size(1200, 700);
+  set_resizable(false);
   
   s_Box.set_margin_top(15);
   s_Box.set_margin_start(20);
@@ -51,8 +55,14 @@ AppWindow::AppWindow()
 
   m_Stack.set_transition_type(Gtk::StackTransitionType::SLIDE_UP_DOWN);
   m_StackSidebar.set_stack(m_Stack);
+  // Page 1 : Information
+  Glib::ustring I_page_text("İzci nedir?");
+  Glib::ustring I_label_text("İzci Pardus işletim sistemi için başlangıç yazılımıdır. Linux türü işletim sistemlerini\nkullanmaya yeni başlayan biri daha önceden kullandığı programları\nçalıştıramaz. Alternatif bulması gerekir. Bu da acil işleri, projeleri olan bir kullanıcı için vakit kaybıdır.\nBu vakit kaybının yaşanmaması için izci sık kullanılan programların alternatiflerini bulur.\n\nEğer bulamazsanız en alt sekmedeki \"Wİne\" yazılımını indirin. Wine, exe dosyalarını\nlinux üzerinde çalıştırılmasını sağlar.");
+  I_label.set_label(I_label_text);
+  I_page.append(I_label);
 
-  // Page 1 : Office Programs
+  m_Stack.add(I_page, I_page_text, I_page_text);
+  // Page 2 : Office Programs
   Glib::ustring OP_page_text("Ofis Programları");
   //Microsoft Office
   Glib::ustring MO_expander_text("Microsoft Office Alternatifleri");
@@ -79,7 +89,7 @@ AppWindow::AppWindow()
   OP_page.append(MO_expander);
   m_Stack.add(OP_page,OP_page_text,OP_page_text);
   
-  //Page 2 : Graphical Design
+  //Page 3 : Graphical Design
   Glib::ustring GD_page_text("Grafik Tasarım");
   
   //Adobe Photoshop
