@@ -51,6 +51,18 @@ AppWindow::AppWindow()
   AV_page(),
   AV_label(),
 
+  VE_page(Gtk::Orientation::VERTICAL),
+  PP_box(),
+  PP_expander(),
+  KD_cbutton(),
+  AN_expander(),
+  AN_box(Gtk::Orientation::VERTICAL),
+  SYN_cbutton(),
+
+  WS_page(Gtk::Orientation::VERTICAL),
+  Wine_cbutton(),
+  GB_cbutton(),
+
   i_button()
 {
   m_HeaderBar.set_show_title_buttons(true);
@@ -76,7 +88,7 @@ AppWindow::AppWindow()
   m_StackSidebar.set_stack(m_Stack);
   // Page 1 : Information
   Glib::ustring I_page_text("İzci nedir?");
-  Glib::ustring I_label_text("İzci Pardus işletim sistemi için başlangıç yazılımıdır. Linux türü işletim sistemlerini\nkullanmaya yeni başlayan biri daha önceden kullandığı programları\nçalıştıramaz. Alternatif bulması gerekir. Bu da acil işleri, projeleri olan bir kullanıcı için vakit kaybıdır.\nBu vakit kaybının yaşanmaması için izci sık kullanılan programların alternatiflerini bulur.\n\nEğer bulamazsanız en alt sekmedeki \"Wİne\" yazılımını indirin. Wine, exe dosyalarını\nlinux üzerinde çalıştırılmasını sağlar.");
+  Glib::ustring I_label_text("İzci Pardus işletim sistemi için başlangıç yazılımıdır. Linux türü işletim sistemlerini\nkullanmaya yeni başlayan biri daha önceden kullandığı programları\nçalıştıramaz. Alternatif bulması gerekir. Bu da acil işleri, projeleri olan bir kullanıcı için vakit kaybıdır.\nBu vakit kaybının yaşanmaması için izci sık kullanılan programların alternatiflerini bulur.\n\nEğer bulamazsanız en alt sekmedeki \"Wİne\" yazılımını indirin. Wine, exe dosyalarını\nlinux üzerinde çalıştırılmasını sağlar. İsterseniz de \"Gnome Boxes\"ı indirip içine windows kurabilirsiniz. ");
   I_label.set_label(I_label_text);
   I_page.append(I_label);
 
@@ -208,13 +220,60 @@ AppWindow::AppWindow()
 
   //Antivirus Page
   Glib::ustring AV_page_text("Antivirüs");
-  Glib::ustring AV_label_text("Pardus, linux tabanlı bir işletim sistemidir. Linux\ntabanlı işletim sistemleri antivirüslere ihtiyaç duymaz.");
+  Glib::ustring AV_label_text("Pardus, linux tabanlı bir işletim sistemidir. Linux\ntabanlı işletim sistemleri antivirüslere ihtiyaç duymaz. :)");
   AV_label.set_label(AV_label_text);
   AV_label.set_margin_start(300);
   AV_page.append(AV_label);
 
   m_Stack.add(AV_page,AV_page_text,AV_page_text);
     
+  //Video Editing
+  Glib::ustring VE_page_text("Video Düzenleme");
+
+  //Adobe Premiere Pro
+  Glib::ustring PP_expander_text("Adobe Premiere Pro Alternatifleri");
+  Glib::ustring KD_cbutton_text("Kdenlive");
+  KD_cbutton.set_label(KD_cbutton_text);
+  KD_cbutton.set_margin_top(10);
+  KD_cbutton.set_margin_start(30);
+  PP_box.append(KD_cbutton);
+  PP_expander.set_child(PP_box);
+  PP_expander.set_label(PP_expander_text);
+  PP_expander.set_margin_top(20);
+  PP_expander.set_margin_start(20);
+  VE_page.append(PP_expander);
+  
+  //Adobe Animate
+  Glib::ustring AN_expander_text("Adobe Animate Alternatifleri");
+  Glib::ustring SYN_cbutton_text("Synfig Studio");
+  SYN_cbutton.set_label(SYN_cbutton_text);
+  SYN_cbutton.set_margin_top(10);
+  SYN_cbutton.set_margin_start(30);
+  AN_box.append(SYN_cbutton);
+  AN_expander.set_child(AN_box);
+  AN_expander.set_label(AN_expander_text);
+  AN_expander.set_margin_top(20);
+  AN_expander.set_margin_start(20);
+  AN_expander.set_expanded(false);
+  VE_page.append(AN_expander);
+  
+  m_Stack.add(VE_page,VE_page_text,VE_page_text);
+  
+  //Windows Softwares Page
+  Glib::ustring WS_page_text("Windows Yazılımları");
+  Glib::ustring Wine_cbutton_text("Wine");
+  Glib::ustring GB_cbutton_text("Gnome Boxes");
+  Wine_cbutton.set_label(Wine_cbutton_text);
+  Wine_cbutton.set_margin_top(10);
+  Wine_cbutton.set_margin_start(30);
+  WS_page.append(Wine_cbutton);
+  GB_cbutton.set_label(GB_cbutton_text);
+  GB_cbutton.set_margin_top(10);
+  GB_cbutton.set_margin_start(30);
+  WS_page.append(GB_cbutton);
+
+  m_Stack.add(WS_page,WS_page_text,WS_page_text);
+
   //Install
   Glib::ustring i_label("İndir");
   i_button.set_label(i_label);
@@ -232,10 +291,10 @@ AppWindow::~AppWindow(){}
 void AppWindow::install(){
   int install_count = 0;
   std::vector<char*> install_list;
-  if(this->LO_cbutton.get_active()){
+  /*if(this->LO_cbutton.get_active()){
     install_count++;
     install_list.push_back("Libre Office");
-  }
+  }*/
   i_dialog.reset(new Gtk::MessageDialog(*this,"İndiriliyor",false,Gtk::MessageType::QUESTION,Gtk::ButtonsType::OK_CANCEL,true));
   i_dialog->set_secondary_text("Seçtiğiniz yazılımlar indirilecektir, \nonaylıyor musunuz?");
   i_dialog->set_hide_on_close(true);

@@ -74,6 +74,24 @@ class AppWindow : public Gtk::Window{
     //Antivirus Page
     Gtk::Box AV_page;
     Gtk::Label AV_label;
+    
+    //Video Editing Page
+    Gtk::Box VE_page;
+
+    //Adobe Premiere Pro
+    Gtk::Box PP_box;
+    Gtk::Expander PP_expander;
+    Gtk::CheckButton KD_cbutton;
+
+    //Adobe Animate
+    Gtk::Box AN_box;
+    Gtk::Expander AN_expander;
+    Gtk::CheckButton SYN_cbutton;
+
+    //Windows Softwares Page
+    Gtk::Box WS_page;
+    Gtk::CheckButton Wine_cbutton;
+    Gtk::CheckButton GB_cbutton;//Gnome Boxes
 
     //Install
     void install();
