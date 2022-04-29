@@ -31,6 +31,11 @@ class AppWindow : public Gtk::Window{
     Gtk::Box MO_box;
     Gtk::CheckButton LO_cbutton;//Libre Office
     Gtk::CheckButton WPS_cbutton;//WPS Office
+                                 
+    //NotePad++
+    Gtk::Expander NP_expander;
+    Gtk::Box NP_box;
+    Gtk::CheckButton AT_cbutton;//Atom
 
     //Graphical Design Page
     Gtk::Box GD_page;
@@ -44,6 +49,31 @@ class AppWindow : public Gtk::Window{
     Gtk::Expander AI_expander;
     Gtk::Box AI_box;
     Gtk::CheckButton Ink_cbutton;
+
+    //3D Design Page
+    Gtk::Box D3_page;
+
+    //AutoCAD
+    Gtk::Expander AC_expander;
+    Gtk::Box AC_box;
+    Gtk::CheckButton Blend_cbutton;//Blender
+                                   
+    //Audio Editing Page
+    Gtk::Box AE_page;
+
+    //Adobe Audition
+    Gtk::Expander AA_expander;
+    Gtk::Box AA_box;
+    Gtk::CheckButton AU_cbutton;//Audacity
+    
+    //FL Studio
+    Gtk::Expander FL_expander;
+    Gtk::Box FL_box;
+    Gtk::CheckButton LMMS_cbutton;//LMMS
+
+    //Antivirus Page
+    Gtk::Box AV_page;
+    Gtk::Label AV_label;
 
     //Install
     void install();
