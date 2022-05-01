@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(Izci)
+
+set(EXEC_INSTALL_DIR /usr/local/bin)
+
 set(FLATPAK_PREFIX ${CMAKE_CURRENT_LIST_DIR}/flatfiles)
 set(LIBRE_OFFICE_FILE org.libreoffice.LibreOffice.flatpakref)
 set(WPS_OFFICE_FILE com.wps.Office.flatpakref)
@@ -14,10 +17,14 @@ set(SYNFIG_FILE org.synfig.SynfigStudio.flatpakref)
 set(BOXES_FILE org.gnome.Boxes.flatpakref)
 configure_file(cmake/config.h.in ${CMAKE_CURRENT_LIST_DIR}/src/config.h @ONLY)
 
-add_executable(MAIN src/main.cpp src/window.h src/window.cpp src/installer.h src/installer.cpp)
+include(GNUInstallDirs)
+
+add_executable(izci src/main.cpp src/window.h src/window.cpp src/installer.h src/installer.cpp)
 
 find_Package( PkgConfig REQUIRED)
 pkg_check_modules(GTKMM REQUIRED gtkmm-4.0)
-target_include_directories(MAIN PUBLIC ${GTKMM_INCLUDE_DIRS})
-target_link_directories(MAIN PUBLIC ${GTKMM_LIBRARY_DIRS})
-target_link_libraries(MAIN PUBLIC ${GTKMM_LIBRARIES})
+target_include_directories(izci PUBLIC ${GTKMM_INCLUDE_DIRS})
+target_link_directories(izci PUBLIC ${GTKMM_LIBRARY_DIRS})
+target_link_libraries(izci PUBLIC ${GTKMM_LIBRARIES})
+install(TARGETS izci RUNTIME DESTINATION bin)
+

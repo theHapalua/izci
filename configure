@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+sudo cmake -S . -B build
+sudo cmake --build build
+sudo cmake --install build
+
