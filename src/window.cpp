@@ -1,7 +1,10 @@
 #include "window.h"
+#include "installer.h"
+#include "config.h"
 #include <gtkmm.h>
 #include <iostream>
 #include <vector>
+#include <cstring>
 
 
 AppWindow::AppWindow()
@@ -289,12 +292,6 @@ AppWindow::AppWindow()
 AppWindow::~AppWindow(){}
 
 void AppWindow::install(){
-  int install_count = 0;
-  std::vector<char*> install_list;
-  /*if(this->LO_cbutton.get_active()){
-    install_count++;
-    install_list.push_back("Libre Office");
-  }*/
   i_dialog.reset(new Gtk::MessageDialog(*this,"İndiriliyor",false,Gtk::MessageType::QUESTION,Gtk::ButtonsType::OK_CANCEL,true));
   i_dialog->set_secondary_text("Seçtiğiniz yazılımlar indirilecektir, \nonaylıyor musunuz?");
   i_dialog->set_hide_on_close(true);
@@ -308,6 +305,111 @@ void AppWindow::on_install_dialog_response(int response_id){
   switch(response_id){
     case Gtk::ResponseType::OK:{
       std::cout << "Installing.\n";
+      //Libre Office Install
+      if(this->LO_cbutton.get_active()){
+        char *LibreOfficePath = new char[100];
+        std::strcpy(LibreOfficePath, FLATPAK_PREFIX);
+        std::strcat(LibreOfficePath, "/");
+        std::strcat(LibreOfficePath, LIBRE_OFFICE_FILE);
+        Install::Install(LibreOfficePath);
+        delete LibreOfficePath;
+      }
+      //WPS Office Install
+      if(this->WPS_cbutton.get_active()){
+        char *WPSOfficePath = new char[100];
+        std::strcpy(WPSOfficePath, FLATPAK_PREFIX);
+        std::strcat(WPSOfficePath, "/");
+        std::strcat(WPSOfficePath, WPS_OFFICE_FILE);
+        Install::Install(WPSOfficePath);
+        delete WPSOfficePath;
+      }
+      //Atom Install
+      if(this->AT_cbutton.get_active()){
+        char *AtomPath = new char[100];
+        std::strcpy(AtomPath, FLATPAK_PREFIX);
+        std::strcat(AtomPath, "/");
+        std::strcat(AtomPath, ATOM_FILE);
+        Install::Install(AtomPath);
+        delete AtomPath;
+      }
+      //GIMP Install
+      if(this->GIMP_cbutton.get_active()){
+        char *GIMPPath = new char[100];
+        std::strcpy(GIMPPath, FLATPAK_PREFIX);
+        std::strcat(GIMPPath, "/");
+        std::strcat(GIMPPath, GIMP_FILE);
+        Install::Install(GIMPPath);
+        delete GIMPPath;
+      }
+      //Inkscape Install
+      if(this->Ink_cbutton.get_active()){
+        char *InkscapePath = new char[100];
+        std::strcpy(InkscapePath, FLATPAK_PREFIX);
+        std::strcat(InkscapePath, "/");
+        std::strcat(InkscapePath, INKSCAPE_FILE);
+        Install::Install(InkscapePath);
+        delete InkscapePath;
+      }
+      //Blender Install
+      if(this->Blend_cbutton.get_active()){
+        char *BlenderPath = new char[100];
+        std::strcpy(BlenderPath, FLATPAK_PREFIX);
+        std::strcat(BlenderPath, "/");
+        std::strcat(BlenderPath, BLENDER_FILE);
+        Install::Install(BlenderPath);
+        delete BlenderPath;
+      }
+      //Audacity Install
+      if(this->AU_cbutton.get_active()){
+        char *AudacityPath = new char[100];
+        std::strcpy(AudacityPath, FLATPAK_PREFIX);
+        std::strcat(AudacityPath, "/");
+        std::strcat(AudacityPath, AUDACITY_FILE);
+        Install::Install(AudacityPath);
+        delete AudacityPath;
+      }
+      //LMMS Install
+      if(this->LMMS_cbutton.get_active()){
+        char *LMMSPath = new char[100];
+        std::strcpy(LMMSPath, FLATPAK_PREFIX);
+        std::strcat(LMMSPath, "/");
+        std::strcat(LMMSPath, LMMS_FILE);
+        Install::Install(LMMSPath);
+        delete LMMSPath;
+      }
+      //Kdenlive Install
+      if(this->KD_cbutton.get_active()){
+        char *KdenlivePath = new char[100];
+        std::strcpy(KdenlivePath, FLATPAK_PREFIX);
+        std::strcat(KdenlivePath, "/");
+        std::strcat(KdenlivePath, KDENLIVE_FILE);
+        Install::Install(KdenlivePath);
+        delete KdenlivePath;
+      }
+      //Synfig Studio Install
+      if(this->SYN_cbutton.get_active()){
+        char *SynfigPath = new char[100];
+        std::strcpy(SynfigPath, FLATPAK_PREFIX);
+        std::strcat(SynfigPath, "/");
+        std::strcat(SynfigPath, SYNFIG_FILE);
+        Install::Install(SynfigPath);
+        delete SynfigPath;
+      }
+      //Wine Install
+      if(this->Wine_cbutton.get_active()){
+        system("sudo add-apt-repository ppa:ubuntu-wine/ppa");
+        system("sudo apt-get update");
+        system("sudo apt-get install wine1.8");
+      }
+      //Gnome Boxes Install
+      if(this->GB_cbutton.get_active()){
+        char *BoxesPath = new char[100];
+        std::strcpy(BoxesPath, FLATPAK_PREFIX);
+        std::strcat(BoxesPath, "/");
+        std::strcat(BoxesPath, BOXES_FILE);
+        Install::Install(BoxesPath);
+        delete BoxesPath;
+      }
       break;
     }case Gtk::ResponseType::CANCEL:{
       std::cout << "Not installing.\n";
