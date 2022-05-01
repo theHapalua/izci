@@ -2,3 +2,4 @@ gittoken.txt
 build/**
 build/*
 !build/
+src/config.h
