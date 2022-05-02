@@ -98,6 +98,7 @@ class AppWindow : public Gtk::Window{
     Gtk::Button i_button;
     std::unique_ptr<Gtk::MessageDialog> i_dialog;
     void on_install_dialog_response(int response_id);
+    void on_installed_dialog_response(int response_id);
 };
 
 #endif
