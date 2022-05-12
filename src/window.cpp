@@ -304,7 +304,6 @@ void AppWindow::on_install_dialog_response(int response_id){
   i_dialog->hide();
   switch(response_id){
     case Gtk::ResponseType::OK:{
-      //i_dialog->hide();
       std::cout << "Installing.\n";
       //Libre Office Install
       if(this->LO_cbutton.get_active()){
@@ -411,29 +410,9 @@ void AppWindow::on_install_dialog_response(int response_id){
         Install::Install(BoxesPath);
         delete BoxesPath;
       }
-      i_dialog.reset(new Gtk::MessageDialog(*this,"İndirildi",false,Gtk::MessageType::QUESTION,Gtk::ButtonsType::OK_CANCEL,true));
-      i_dialog->set_hide_on_close(true);
-      i_dialog->signal_response().connect(sigc::mem_fun(*this,&AppWindow::on_installed_dialog_response));
-      i_dialog->show();
-
       break;
     }case Gtk::ResponseType::CANCEL:{
-      //i_dialog->hide();
       std::cout << "Not installing.\n";
     }
   }
-  return;
 }
-void AppWindow::on_installed_dialog_response(int response_id){
-    i_dialog->hide();
-    switch(response_id){
-      case Gtk::ResponseType::OK:{
-        std::cout << "OK\n";
-        break;
-      }case Gtk::ResponseType::CANCEL:{
-        std::cout << "Cancel\n";
-        break;
-      }
-    }
-    return;
-  }
