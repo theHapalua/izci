@@ -6,16 +6,16 @@
 
 **Not** : Öncesinde [gtkmm](https://github.com/GNOME/gtkmm)'nin ve [cmake](https://github.com/Kitware/CMake)'in kurulu olması gerekmektedir. 
 
-1. **Klonlama**
+1. **Klonlama**  
 	´´´
 	git clone https://github.com/theHapalua/izci izci
 	´´´
-2. **Kurulum**
+2. **Kurulum**  
 	´´´
 	cd izci
 	./configure
 	´´´
-3. **Çalıştırma**
+3. **Çalıştırma**  
 	´´´
 	izci
 	´´´
