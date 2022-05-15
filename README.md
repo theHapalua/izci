@@ -7,18 +7,18 @@
 **Not** : Öncesinde [gtkmm](https://github.com/GNOME/gtkmm)'nin ve [cmake](https://github.com/Kitware/CMake)'in kurulu olması gerekmektedir. 
 
 1. **Klonlama**  
-'''  
+```bash 
 git clone https://github.com/theHapalua/izci izci  
-'''   
+```   
 2. **Kurulum**  
-'''   
+```bash
 cd izci   
 ./configure   
-'''   
+```   
 3. **Çalıştırma**  
-'''   
+```bash   
 izci   
-'''   
+```   
 
 Bu komut ile yazılımı çalıştırabilirsiniz.   
 
