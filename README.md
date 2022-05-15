@@ -6,6 +6,8 @@
 
 **Not** : Öncesinde [gtkmm](https://github.com/GNOME/gtkmm)'nin ve [cmake](https://github.com/Kitware/CMake)'in kurulu olması gerekmektedir. 
 
+Şu komutları sırayla Pardus komut satırında çalıştırın.   
+
 1. **Klonlama**  
 ```bash 
 git clone https://github.com/theHapalua/izci izci  
